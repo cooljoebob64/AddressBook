@@ -148,6 +148,8 @@ public class Main {
 
     private static void emptyAddressBook() {
         System.out.println("Emptying address book!");
+        myAddressor.deleteAddressBook();
+        System.out.println("Done!");
         pressEnter();
     }
 
