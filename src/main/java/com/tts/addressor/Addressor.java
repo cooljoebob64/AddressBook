@@ -6,11 +6,11 @@ public class Addressor {
 
     private ArrayList<Entry> myList;
 
-    private void addEntry(){}
-    private void removeEntry(){}
-    private void searchEntries(){}
-    private void printAddressBook(){}
-    private void deleteAddressBook(){}
-    private void quit(){}
+    public void addEntry(){}
+    public void removeEntry(){}
+    public void searchEntries(){}
+    public void printAddressBook(){}
+    public void deleteAddressBook(){}
+    public void quit(){}
 
 }
