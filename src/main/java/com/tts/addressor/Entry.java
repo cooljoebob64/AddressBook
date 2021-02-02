@@ -7,6 +7,22 @@ public class Entry {
     private String phoneNumber;
     private String emailAddress;
 
+
+    private Entry(String firstName, String lastName, String phoneNumber, String emailAddress){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+    }
+
+    public static Entry createBlankEntry(){
+        return new Entry("","","","");
+    }
+
+    public static Entry createEntry(String firstName, String lastName, String phoneNumber, String emailAddress){
+        return new Entry(firstName, lastName, phoneNumber, emailAddress);
+    }
+
     public String getFirstName() {
         return firstName;
     }
