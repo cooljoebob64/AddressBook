@@ -74,6 +74,16 @@ class AddressorTest {
     @Test
     void searchEntries() {
         testAddressor.addEntry(testEntry);
+        ArrayList<Entry> searchResult = testAddressor.searchEntries(testEntry.getEmailAddress());
+
+        String expected = testEntry.getEmailAddress();
+        String actual = searchResult.get(0).getEmailAddress();
+        assertTrue(actual.contains(expected));
+    }
+
+    @Test
+    void searchEntriesByType() {
+        testAddressor.addEntry(testEntry);
         ArrayList<Entry> searchResult = testAddressor.searchEntries(testEntry.getEmailAddress(), Addressor.SearchType.EMAIL);
 
         String expected = testEntry.getEmailAddress();

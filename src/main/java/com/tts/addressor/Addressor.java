@@ -7,19 +7,20 @@ public class Addressor {
 
     private ArrayList<Entry> myList;
 
-    private Addressor(){
-        myList = new ArrayList<>();
-    }
-
     public enum SearchType {
         FIRSTNAME,
         LASTNAME,
         PHONE,
         EMAIL;
+
     }
 
     public static Addressor createEmptyAddressor(){
         return new Addressor();
+    }
+
+    private Addressor(){
+        myList = new ArrayList<>();
     }
 
     public void addEntry (Entry newEntry)throws InputMismatchException{
@@ -45,11 +46,37 @@ public class Addressor {
     }
 
     public ArrayList<Entry> searchEntries(String searchQuery){
-        return myList;
+        ArrayList<Entry> searchList = new ArrayList<>();
+        for(Entry entry:myList){
+            if((entry.getFirstName().contains(searchQuery)||
+                    entry.getLastName().contains(searchQuery)||
+                    entry.getPhoneNumber().contains(searchQuery)||
+                    entry.getEmailAddress().contains(searchQuery))&&
+                    !(searchList.contains(entry))){
+                searchList.add(entry);
+            }
+        }
+        return searchList;
     }
 
     public ArrayList<Entry> searchEntries(String searchQuery, SearchType searchType){
-        return myList;
+        ArrayList<Entry> searchList = new ArrayList<>();
+
+        for(Entry entry:myList){
+            String searchResult = "";
+            switch (searchType){
+                case FIRSTNAME:{searchResult=entry.getFirstName();}
+                case LASTNAME:{searchResult=entry.getLastName();}
+                case PHONE:{searchResult=entry.getPhoneNumber();}
+                case EMAIL:{searchResult=entry.getEmailAddress();}
+            }
+
+            if((searchResult.contains(searchQuery))&&
+                    !(searchList.contains(entry))){
+                searchList.add(entry);
+            }
+        }
+        return searchList;
 
     }
 
