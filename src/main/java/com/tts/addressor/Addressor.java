@@ -60,8 +60,6 @@ public class Addressor {
 
     public ArrayList<Entry> searchEntries(String searchQuery, SearchType searchType){
         ArrayList<Entry> searchList = new ArrayList<>();
-        System.out.println("About to search with type: " + searchType);
-
         for(Entry entry:myList){
             String searchResult = "";
             switch (searchType) {
