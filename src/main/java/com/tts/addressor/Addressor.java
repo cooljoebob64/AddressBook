@@ -5,14 +5,13 @@ import java.util.InputMismatchException;
 
 public class Addressor {
 
-    private ArrayList<Entry> myList;
+    private final ArrayList<Entry> myList;
 
     public enum SearchType {
         FIRSTNAME,
         LASTNAME,
         PHONE,
-        EMAIL;
-
+        EMAIL
     }
 
     public static Addressor createEmptyAddressor(){
@@ -63,18 +62,10 @@ public class Addressor {
         for(Entry entry:myList){
             String searchResult = "";
             switch (searchType) {
-                case FIRSTNAME -> {
-                    searchResult = entry.getFirstName();
-                }
-                case LASTNAME -> {
-                    searchResult = entry.getLastName();
-                }
-                case PHONE -> {
-                    searchResult = entry.getPhoneNumber();
-                }
-                case EMAIL -> {
-                    searchResult = entry.getEmailAddress();
-                }
+                case FIRSTNAME -> searchResult = entry.getFirstName();
+                case LASTNAME -> searchResult = entry.getLastName();
+                case PHONE -> searchResult = entry.getPhoneNumber();
+                case EMAIL -> searchResult = entry.getEmailAddress();
             }
 
             if((searchResult.contains(searchQuery))&&
