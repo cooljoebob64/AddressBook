@@ -7,6 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class AddressorTest {
 
     @Test
+    void createEmptyAddressor(){
+        Addressor newAddressor = Addressor.createEmptyAddressor();
+//        assertTrue(newAddressor instanceof Addressor);
+        assertNotEquals(newAddressor, null);
+    }
+
+    @Test
     void addEntry() {
 
     }

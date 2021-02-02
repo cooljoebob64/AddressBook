@@ -12,9 +12,9 @@ public class Addressor {
         return new Addressor();
     }
 
-    public void addEntry(){}
-    public void removeEntry(){}
-    public void searchEntries(){}
+    public void addEntry(Entry newEntry){}
+    public void removeEntry(Entry removedEntry){}
+    public void searchEntries(String searchQuery){}
     public void printAddressBook(){}
     public void deleteAddressBook(){}
     public void quit(){}
