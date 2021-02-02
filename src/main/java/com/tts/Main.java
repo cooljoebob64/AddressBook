@@ -28,24 +28,12 @@ public class Main {
             String response = kb.nextLine();
 
             switch (response) {
-                case "1" -> {
-                    addEntry();
-                }
-                case "2" -> {
-                    removeEntry();
-                }
-                case "3" -> {
-                    searchEntries();
-                }
-                case "4" -> {
-                    printAddressBook();
-                }
-                case "5" -> {
-                    emptyAddressBook();
-                }
-                case "6" -> {
-                    quit();
-                }
+                case "1" -> addEntry();
+                case "2" -> removeEntry();
+                case "3" -> searchEntries();
+                case "4" -> printAddressBook();
+                case "5" -> emptyAddressBook();
+                case "6" -> quit();
                 default -> {
                     System.out.println("Invalid option, please choose again!");
                     pressEnter();
@@ -149,7 +137,6 @@ public class Main {
                 System.out.println(entry.toString());
             }
         }
-
         pressEnter();
     }
 
