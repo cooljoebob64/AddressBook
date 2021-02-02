@@ -32,13 +32,12 @@ public class Addressor {
         }
     }
 
-    public void removeEntry(String email){
+    public void removeEntry(String email) throws NullPointerException{
         Entry searchEntry;
         try{
             searchEntry = searchEntries(email,SearchType.EMAIL).get(0);
         } catch (NullPointerException e){
-            System.out.println("Error - No entry found: " + e);
-            return;
+            throw new NullPointerException("No entry found with the specified email address.");
         }
         if(searchEntry!=null){
             myList.remove(searchEntry);
