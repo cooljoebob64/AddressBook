@@ -14,52 +14,52 @@ public class Addressor {
         EMAIL
     }
 
-    public static Addressor createEmptyAddressor(){
+    public static Addressor createEmptyAddressor() {
         return new Addressor();
     }
 
-    private Addressor(){
+    private Addressor() {
         myList = new ArrayList<>();
     }
 
-    public void addEntry (Entry newEntry)throws InputMismatchException{
+    public void addEntry(Entry newEntry) throws InputMismatchException {
         ArrayList<Entry> searchResults = searchEntries(newEntry.getEmailAddress(), SearchType.EMAIL);
-        if(searchResults.isEmpty()){
+        if (searchResults.isEmpty()) {
             myList.add(newEntry);
         } else {
             throw new InputMismatchException("Email address already in book!");
         }
     }
 
-    public void removeEntry(String email) throws NullPointerException{
+    public void removeEntry(String email) throws NullPointerException {
         Entry searchEntry;
-        try{
-            searchEntry = searchEntries(email,SearchType.EMAIL).get(0);
-        } catch (NullPointerException e){
+        try {
+            searchEntry = searchEntries(email, SearchType.EMAIL).get(0);
+        } catch (NullPointerException e) {
             throw new NullPointerException("No entry found with the specified email address.");
         }
-        if(searchEntry!=null){
+        if (searchEntry != null) {
             myList.remove(searchEntry);
         }
     }
 
-    public ArrayList<Entry> searchEntries(String searchQuery){
+    public ArrayList<Entry> searchEntries(String searchQuery) {
         ArrayList<Entry> searchList = new ArrayList<>();
-        for(Entry entry:myList){
-            if((entry.getFirstName().contains(searchQuery)||
-                    entry.getLastName().contains(searchQuery)||
-                    entry.getPhoneNumber().contains(searchQuery)||
-                    entry.getEmailAddress().contains(searchQuery))&&
-                    !(searchList.contains(entry))){
+        for (Entry entry : myList) {
+            if ((entry.getFirstName().contains(searchQuery) ||
+                    entry.getLastName().contains(searchQuery) ||
+                    entry.getPhoneNumber().contains(searchQuery) ||
+                    entry.getEmailAddress().contains(searchQuery)) &&
+                    !(searchList.contains(entry))) {
                 searchList.add(entry);
             }
         }
         return searchList;
     }
 
-    public ArrayList<Entry> searchEntries(String searchQuery, SearchType searchType){
+    public ArrayList<Entry> searchEntries(String searchQuery, SearchType searchType) {
         ArrayList<Entry> searchList = new ArrayList<>();
-        for(Entry entry:myList){
+        for (Entry entry : myList) {
             String searchResult = "";
             switch (searchType) {
                 case FIRSTNAME -> searchResult = entry.getFirstName();
@@ -68,8 +68,8 @@ public class Addressor {
                 case EMAIL -> searchResult = entry.getEmailAddress();
             }
 
-            if((searchResult.contains(searchQuery))&&
-                    !(searchList.contains(entry))){
+            if ((searchResult.contains(searchQuery)) &&
+                    !(searchList.contains(entry))) {
                 searchList.add(entry);
             }
         }
@@ -77,18 +77,18 @@ public class Addressor {
 
     }
 
-    public void printAddressBook(){
-        if(myList.isEmpty()){
+    public void printAddressBook() {
+        if (myList.isEmpty()) {
             System.out.println("No entries in this address book!");
-        } else{
+        } else {
             System.out.println("The contents of this address book:");
-            for(Entry entry:myList){
+            for (Entry entry : myList) {
                 System.out.println(entry.toString());
             }
         }
     }
 
-    public void deleteAddressBook(){
+    public void deleteAddressBook() {
         myList.clear();
     }
 }

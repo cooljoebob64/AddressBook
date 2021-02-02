@@ -8,23 +8,23 @@ public class Entry {
     private String emailAddress;
 
 
-    private Entry(String firstName, String lastName, String phoneNumber, String emailAddress){
+    private Entry(String firstName, String lastName, String phoneNumber, String emailAddress) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
     }
 
-    public static Entry createBlankEntry(){
-        return new Entry("","","","");
+    public static Entry createBlankEntry() {
+        return new Entry("", "", "", "");
     }
 
-    public static Entry createEntry(String firstName, String lastName, String phoneNumber, String emailAddress){
+    public static Entry createEntry(String firstName, String lastName, String phoneNumber, String emailAddress) {
         return new Entry(firstName, lastName, phoneNumber, emailAddress);
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "First Name: " + this.firstName + "\n" +
                 "Last Name: " + this.lastName + "\n" +
                 "Phone Number: " + this.phoneNumber + "\n" +

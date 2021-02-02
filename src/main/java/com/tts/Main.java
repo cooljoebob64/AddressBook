@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Main {
 
     private static final Addressor myAddressor = Addressor.createEmptyAddressor();
-    private static Scanner kb = new Scanner(System.in);
+    private static final Scanner kb = new Scanner(System.in);
     private static boolean keepGoing = true;
 
     public static void main(String[] args) {
@@ -59,7 +59,7 @@ public class Main {
             myAddressor.addEntry(newEntry);
             System.out.println("Added the following entry:");
             System.out.println(newEntry.toString());
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("Entry not added: " + e.getMessage());
         }
         pressEnter();
@@ -70,7 +70,7 @@ public class Main {
         String removeChoice = kb.nextLine();
         try {
             myAddressor.removeEntry(removeChoice);
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("Error: " + e.getMessage());
         }
         pressEnter();
@@ -79,9 +79,9 @@ public class Main {
     private static void searchEntries() {
         System.out.println("Searching entries!");
         ArrayList<Entry> searchResults = new ArrayList<>();
-        boolean searchChoice=false;
+        boolean searchChoice;
         do {
-            searchChoice=true;
+            searchChoice = true;
             System.out.println("""
                     1) Search all fields
                     2) First Name
@@ -93,7 +93,7 @@ public class Main {
             System.out.println("Enter the number of the option you would like to search by:");
             String response = kb.nextLine();
 
-            switch (response){
+            switch (response) {
                 case "1" -> {
                     System.out.println("Enter a term to search all fields:");
                     response = kb.nextLine();
@@ -119,21 +119,19 @@ public class Main {
                     response = kb.nextLine();
                     searchResults = myAddressor.searchEntries(response, Addressor.SearchType.EMAIL);
                 }
-                case "6" -> {
-                    System.out.println("Cancelling search!");
-                }
+                case "6" -> System.out.println("Cancelling search!");
                 default -> {
                     System.out.println("Unrecognized input, try again!");
                     searchChoice = false;
                 }
             }
-        } while(!searchChoice);
+        } while (!searchChoice);
 
-        if(searchResults.isEmpty()){
+        if (searchResults.isEmpty()) {
             System.out.println("No matching entries in this address book!");
-        } else{
+        } else {
             System.out.println("The matching contents of this address book:");
-            for(Entry entry:searchResults){
+            for (Entry entry : searchResults) {
                 System.out.println(entry.toString());
             }
         }
