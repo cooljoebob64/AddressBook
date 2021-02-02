@@ -23,6 +23,14 @@ public class Entry {
         return new Entry(firstName, lastName, phoneNumber, emailAddress);
     }
 
+    @Override
+    public String toString(){
+        return "First Name: " + this.firstName + "\n" +
+                "Last Name: " + this.lastName + "\n" +
+                "Phone Number: " + this.phoneNumber + "\n" +
+                "Email Address: " + this.emailAddress;
+    }
+
     public String getFirstName() {
         return firstName;
     }

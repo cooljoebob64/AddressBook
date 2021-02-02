@@ -60,14 +60,23 @@ public class Addressor {
 
     public ArrayList<Entry> searchEntries(String searchQuery, SearchType searchType){
         ArrayList<Entry> searchList = new ArrayList<>();
+        System.out.println("About to search with type: " + searchType);
 
         for(Entry entry:myList){
             String searchResult = "";
-            switch (searchType){
-                case FIRSTNAME:{searchResult=entry.getFirstName();}
-                case LASTNAME:{searchResult=entry.getLastName();}
-                case PHONE:{searchResult=entry.getPhoneNumber();}
-                case EMAIL:{searchResult=entry.getEmailAddress();}
+            switch (searchType) {
+                case FIRSTNAME -> {
+                    searchResult = entry.getFirstName();
+                }
+                case LASTNAME -> {
+                    searchResult = entry.getLastName();
+                }
+                case PHONE -> {
+                    searchResult = entry.getPhoneNumber();
+                }
+                case EMAIL -> {
+                    searchResult = entry.getEmailAddress();
+                }
             }
 
             if((searchResult.contains(searchQuery))&&

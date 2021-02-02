@@ -3,6 +3,7 @@ package com.tts;
 import com.tts.addressor.Addressor;
 import com.tts.addressor.Entry;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -64,8 +65,12 @@ public class Main {
         System.out.println("Email address (may not be empty, and must be unique): ");
         String entryEmail = kb.nextLine();
 
+        Entry newEntry = Entry.createEntry(entryFirstName, entryLastName, entryPhone, entryEmail);
+
         try {
-            myAddressor.addEntry(Entry.createEntry(entryFirstName, entryLastName, entryPhone, entryEmail));
+            myAddressor.addEntry(newEntry);
+            System.out.println("Added the following entry:");
+            System.out.println(newEntry.toString());
         } catch (InputMismatchException e){
             System.out.println("Entry not added: " + e.getMessage());
         }
@@ -85,6 +90,66 @@ public class Main {
 
     private static void searchEntries() {
         System.out.println("Searching entries!");
+        ArrayList<Entry> searchResults = new ArrayList<>();
+        boolean searchChoice=false;
+        do {
+            searchChoice=true;
+            System.out.println("""
+                    1) Search all fields
+                    2) First Name
+                    3) Last Name
+                    4) Phone Number
+                    5) Email Address
+                    6) Cancel
+                    """);
+            System.out.println("Enter the number of the option you would like to search by:");
+            String response = kb.nextLine();
+
+            switch (response){
+                case "1" -> {
+                    System.out.println("Enter a term to search all fields:");
+                    response = kb.nextLine();
+                    searchResults = myAddressor.searchEntries(response);
+                }
+                case "2" -> {
+                    System.out.println("Enter a First Name to search by:");
+                    response = kb.nextLine();
+                    searchResults = myAddressor.searchEntries(response, Addressor.SearchType.FIRSTNAME);
+                }
+                case "3" -> {
+                    System.out.println("Enter a Last Name to search by:");
+                    response = kb.nextLine();
+                    searchResults = myAddressor.searchEntries(response, Addressor.SearchType.LASTNAME);
+                }
+                case "4" -> {
+                    System.out.println("Enter a Phone Number to search by:");
+                    response = kb.nextLine();
+                    searchResults = myAddressor.searchEntries(response, Addressor.SearchType.PHONE);
+                }
+                case "5" -> {
+                    System.out.println("Enter an Email Address to search by:");
+                    response = kb.nextLine();
+                    searchResults = myAddressor.searchEntries(response, Addressor.SearchType.EMAIL);
+                }
+                case "6" -> {
+                    System.out.println("Cancelling search!");
+                }
+                default -> {
+                    System.out.println("Unrecognized input, try again!");
+                    searchChoice = false;
+                }
+            }
+        } while(!searchChoice);
+
+        if(searchResults.isEmpty()){
+            System.out.println("No matching entries in this address book!");
+        } else{
+            System.out.println("The matching contents of this address book:");
+            for(Entry entry:searchResults){
+                System.out.println(entry.toString());
+            }
+        }
+
         pressEnter();
     }
 
