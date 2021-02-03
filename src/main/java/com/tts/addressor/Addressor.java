@@ -35,7 +35,7 @@ public class Addressor {
         Entry searchEntry;
         try {
             searchEntry = searchEntries(email, SearchType.EMAIL).get(0);
-        } catch (NullPointerException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new NullPointerException("No entry found with the specified email address.");
         }
         if (searchEntry != null) {
